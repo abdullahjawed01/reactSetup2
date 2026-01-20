@@ -1,9 +1,11 @@
+import {useState} from "react"
 import Card from "./Card"
 import restaurants from "../data/restraunt"
 
 
 function Body() {
-  let reslist = restaurants
+  const [reslist, setRestlist] = useState(restaurants);
+  // let reslist = restaurants
   return (
     <>
     <div>
@@ -13,13 +15,19 @@ function Body() {
 
     <div className='Search'>  
 
+    <button className="bg-green-500 text-white px-4 py-2 rounded-md  " onClick={()=>{
+      let filters = reslist.filter((res)=> res.avgRating>4)
+      setRestlist(filters);
+      // console.log(filters);
+    }}>Filter</button>
     </div>
     <div className='flex flex-wrap pt-10 justify-center'>
 
     {reslist.map((restaurants,index)=>(
       <Card key={index} resData={restaurants} />
     ))}
-      
+
+
 
    
     {/* <Card name={"Taj restarunt"} price={"₹180"} rate={"3.5"}   add={"44 street Mehdipatnam-80101"} desc={"Biryani"} src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/1a8dfa8b2a73ddf7c6193465ab24c898"}/>

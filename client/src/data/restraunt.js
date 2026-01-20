@@ -4,7 +4,7 @@ const restaurants = [
         "name": "Biryani Company",
         "areaName": "Nizampet & Pragathi Nagar",
         "cloudinaryImageId": "32c777729cae0bbb395cf65ea26b0995",
-        "avgRating": 3.7,
+        "avgRating": 4.2,
         "costForTwoMessage": "₹400 FOR TWO",
         "totalRatingsString": "934"
     },

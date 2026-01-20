@@ -106,9 +106,15 @@ function Card({ resData }) {
         
           <div className="text-white text-lg mt-4 flex justify-between items-center">
             <p>{resData.costForTwoMessage}</p>
-            <span className="bg-green-400 text-black rounded-xl h-10 w-10 flex items-center justify-center">
-              {resData.avgRating}
-            </span>
+            <div className="flrx items-center text-yellow-500 text-sm mb-1">
+              {Array.from({length:5}).map((_,i)=>(
+                <span key={i}> {i< Math.floor(resData.avgRating) ? "★" : "☆" } </span>
+              ))}
+                <span className="ml-1  text-white " > ({resData.avgRating})</span>
+            
+            
+            </div>
+            
           </div>
 
          
@@ -120,3 +126,6 @@ function Card({ resData }) {
 }
 
 export default Card;
+
+  // <span className="bg-green-400 text-black rounded-xl h-10 w-10 flex items-center justify-center">
+  //             {resData.avgRating}</span>
