@@ -13,15 +13,42 @@ function Body() {
 
 
 
-    <div className='Search'>  
+    <div className='h-30 p-10 flex justify-center'>  
 
     <button className="bg-green-500 text-white px-4 py-2 rounded-md  " onClick={()=>{
       let filters = reslist.filter((res)=> res.avgRating>4)
       setRestlist(filters);
       // console.log(filters);
     }}>Filter</button>
+
+
+      <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-10 " onClick={()=>{
+      let sorted = [...reslist].sort((a,b)=> a.name.localeCompare(b.name));
+      setRestlist(sorted);
+      // console.log(sorted); 
+    }}>A-Z</button>
+
+
+    <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-10 " onClick={()=>{
+      let sorted = [...reslist].sort((a,b)=> b.name.localeCompare(a.name));
+      setRestlist(sorted);
+      // console.log(sorted); 
+    }}>Z-A</button>
+
+         {/* <button className="bg-green-500 text-white px-4 py-2 rounded-md  " onClick={()=>{
+      let filters = reslist.sort()
+      setRestlist(filters);
+      // console.log(filters);
+    }}>A-Z</button> */}
+
+
+
+
+
+
+
     </div>
-    <div className='flex flex-wrap pt-10 justify-center'>
+    <div className='flex flex-wrap  justify-center'>
 
     {reslist.map((restaurants,index)=>(
       <Card key={index} resData={restaurants} />
