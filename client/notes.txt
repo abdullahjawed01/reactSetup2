@@ -1,3 +1,26 @@
 //Monolith Vs Microservice Architecture
 
-What is known as Monolith Architecture 
+
+features            Monolith.                   Microservice
+Architecture        Single app                  Multiple indepent apps
+Desployement.       One deployement             Many deployements   
+Scalability         FUll app only               Per service
+Fialure Impact      Whole app can crash         Isolated to single service 
+CodeBase.           One Shared                  Multiple (often one repo per service)
+Idea for            MVPs, Startups              Large systems, multiple teams
+
+
+
+
+
+
+Company used Microservice
+Netflix
+Amazon
+Uber
+Spotify
+
+
+
+
+

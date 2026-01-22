@@ -1,14 +1,81 @@
 import {useState} from "react"
 import Card from "./Card"
 import restaurants from "../data/restraunt"
+import axios  from "axios";
+import { useEffect } from "react";
 
 
 function Body() {
-  const [reslist, setRestlist] = useState(restaurants);
+  const [reslist, setRestlist] = useState([]);
+  const [search, setSearch] = useState("biryani")
+  const [res, setRes] = useState("Biryani King");
   // let reslist = restaurants
+
+
+    async function apiCall() {
+      try {
+        let response = await axios.get(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=17.3974397&lng=78.4489062&str=${search}&trackingId=undefined&submitAction=ENTER&queryUniqueId=28a781b7-c1f3-18fe-481d-d7de175d92ad&selectedPLTab=RESTAURANT`)
+        const totalRes = response?.data?.data?.cards?.[0]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards;
+
+        const finalRes = totalRes.map((x)=>x?.card?.card?.info)
+        console.log(finalRes)
+        setRestlist(finalRes)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    
+function inCardSearch() {
+  let filtered = reslist.filter((restaurant) =>
+    restaurant.name.toLowerCase().includes(res.toLowerCase())
+  );
+  setRestlist(filtered);
+}
+
+    
+
+
+
+
+
+
+    useEffect(()=>{
+      apiCall()
+     
+    },[])
+
+  
+
+
+
   return (
     <>
     <div>
+
+
+    <div className="flex justify-center">
+    
+      <input className="border-2 rounded-2xl p-2 m-2 " placeholder="Enter the items" type="text" onChange={(e)=>{
+        setSearch(e.target.value)
+      }} onClick={()=>{
+        apiCall()
+      }}  />
+      <button className="bg-blue-600 rounded-2xl p-2 m-2 text-white font-bold" onClick={apiCall}>Submit</button>
+    </div>
+
+     <div className="flex justify-center">
+    
+      <input className="border-2 rounded-2xl p-2 m-2 " placeholder="Enter the restraunt name" type="text" onChange={(e)=>{
+        setRes(e.target.value)
+      }}/>
+      <button className="bg-blue-600 rounded-2xl p-2 m-2 text-white font-bold" onClick={inCardSearch}>Submit</button>
+    </div>
+
+
+
+
+    
 
 
 

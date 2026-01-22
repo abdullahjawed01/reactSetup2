@@ -11,8 +11,8 @@ function Card({ resData }) {
 const handleAdd = () => {
   addToCart({
     id: resData.id,
-    hotelName: resData.name, // 🏨 restaurant
-    itemName: resData.name,  // 🍽️ item
+    hotelName: resData.name, 
+    itemName: resData.name, 
     price: resData.costForTwoMessage,
     image: Image,
   });
